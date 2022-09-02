@@ -1,0 +1,40 @@
+run_name: &run_name xlmr_base_test
+max_length: &max_length 512
+
+model:
+  type: xlmr intent classification slot filling
+  checkpoint: /content/CHECKPOINTS/xlmr_base/checkpoint-6300
+
+tokenizer:
+  type: xlmr base
+  tok_args:
+    vocab_file: /content/sentencepiece.bpe.model
+    max_len: *max_length
+
+collator:
+  type: massive intent class slot fill
+  args:
+    max_length: *max_length
+    padding: longest
+
+test:
+  test_dataset: /content/dataset.test
+  intent_labels: /content/dataset.intents
+  slot_labels: /content/dataset.slots
+  massive_path: /content/massive
+  slot_labels_ignore:
+    - Other
+  eval_metrics: all
+  predictions_file: /content/LOG/xlmr_base/preds.jsonl
+  trainer_args:
+    output_dir: /content/CHECKPOINTS/xlmr_base
+    per_device_eval_batch_size: 128
+    remove_unused_columns: false
+    label_names:
+      - intent_num
+      - slots_num
+    log_level: info
+    logging_strategy: no
+    locale_eval_strategy: all only
+    #locale_eval_strategy: all and each
+    disable_tqdm: false
