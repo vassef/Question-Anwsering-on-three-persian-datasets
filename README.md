@@ -1,2 +1,2 @@
-# NLP_Course_Project
-The projects from the NLP course which I took from the master's program.
+# Question-Anwsering-on-three-persian-datasets
+The is the final project of NLP course which we took from the master's program.
