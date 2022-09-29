@@ -1,2 +1,2 @@
 # Question-Anwsering-on-three-persian-datasets
-The is the final project of NLP course which we took from the master's program.
+**Final project (CA6) of Natural Language Processing graduate course** 
